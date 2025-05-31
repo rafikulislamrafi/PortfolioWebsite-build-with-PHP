@@ -1,58 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ASHIKUR Project</title>
-  <link rel="stylesheet" href="./css/all.min.css">
-  <link rel="stylesheet" href="css/bootstrap.min.css">
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="css/responsive.css">
-</head>
-
-<body>
-  <!-- ====== Nav Bar Start ====== -->
-  <nav class="navbar navbar-expand-lg">
-    <div class="container">
-      <a class="navbar-brand" href="#"><img src="./img/rafi-black.png" alt=""></a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <i class="fa-solid fa-align-right"></i>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#hero-section">HOME</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" aria-current="page" href="#about-section">ABOUT</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" aria-current="page" href="#project-section">PROJECTS</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" aria-current="page" href="#blog-section">BLOGES</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" aria-current="page" href="#">CONTACT</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
-  <!-- ====== Nav Bar End ====== -->
+<?php
+// Include header
+include_once("./frontend_layouts/header.php");
+include_once("./database/env.php");
+$query = "SELECT * FROM banner LIMIT 1"; 
+$result = mysqli_query($conn, $query);
+$currentBanner = mysqli_fetch_assoc($result);
+?>
   <!-- ====== Hero Section Start ====== -->
   <section id="hero-section">
     <div class="container">
       <div class="row align-items-center">
         <div class="hero-cnt col-md-6">
-          <h4>Hello, I'm Arif Rahman 👋</h4>
-          <h1>UIUX and Graphic <br> Designer</h1>
-          <p>With 10 yevvars experience as a <br>
-            Professional Web developer.</p>
-          <a class="btn btn-primary" href="#">Lets talk <span><i class="fa-regular fa-paper-plane"></i></span></a>
-          <a class="btn btn-common" href="#">Download CV <span><i class="fa-solid fa-download"></i></span></a>
+          <h4><?= $currentBanner['heading']?> 👋</h4>
+          <h1><?= $currentBanner['sub_heading']?></h1>
+          <p><?= $currentBanner['details']?></p>
+          <a class="btn btn-primary" href="<?= $currentBanner['cta_one_link']?>"><?= $currentBanner['cta_one']?><span><i class="fa-regular fa-paper-plane"></i></span></a>
+          <a class="btn btn-common" href="<?= $currentBanner['cta_two_link']?>"><?= $currentBanner['cta_two']?><span><i class="fa-solid fa-download"></i></span></a>
           <div class="d-none d-lg-block social-media">
             <span>Follow me :</span>
             <a href="#"><span><i class="fa-brands fa-dribbble"></i></span></a>
@@ -62,7 +25,7 @@
           </div>
         </div>
         <div class="hero-img col-md-6">
-          <img class="img-fluid" src="./img/Group 212.png" alt="Hero Image">
+          <img class="img-fluid" src="<?= $currentBanner['featured_img']?>" alt="Hero Image">
         </div>
         <div class="d-lg-none social-media">
           <span>Follow me :</span>
@@ -541,67 +504,6 @@
     </div>
   </section>
   <!-- New Page -->
-  <!-- ====== Footer Section Start ====== -->
-  <footer id="footer">
-    <div class="container">
-      <div class="row align-items-baseline">
-        <div class="footerlogo col-md-3">
-          <a href="index.html"><img class="img-fluid" src="./img/rafi-white.png" alt="footer logo
-            "></a>
-        </div>
-        <div class="footerCtn col-md-6">
-          <h4>Let's work together</h4>
-          <p>You can express yourself however you want and whenever you want, for free. You can customize a template or
-            make your
-            own.</p>
-        </div>
-        <div class="footerBtn col-md-3 text-end">
-          <a class="btn btn-primary" href="#">Lets talk <span><i class="fa-regular fa-paper-plane"></i></span></a>
-        </div>
-      </div>
-      <div class="footerCotact">
-        <div class="row align-items-baseline">
-          <div class="Contact col-md-6">
-            <div class="row">
-              <div class="call col-md-6">
-                <p>Call:</p>
-                <h5>+9984748473833</h5>
-              </div>
-              <div class="email col-md-6">
-                <p>Email:</p>
-                <h5>dfsush@gmail.com</h5>
-              </div>
-            </div>
-          </div>
-          <div class="footerIcon col-md-5 text-end">
-            <p>Follow Me:</p>
-            <a href="#"><span><i class="fa-brands fa-square-behance"></i></span></a>
-            <a href="#"><span><i class="fa-brands fa-dribbble"></i></span></a>
-            <a href="#"><span><i class="fa-brands fa-instagram"></i></span></a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </footer>
-  <!-- ====== Footer Section End ====== -->
-  <!-- New Page -->
-  <!-- <section id="newPage">
-    <div class="container">
-      <div class="wrap">
-        <a class="button" href="./newpage/new.html">Explore More</a>
-      </div>
-    </div>
-  </section> -->
-  <!-- New Page -->
-
-
-
-
-
-
-
-  <script src="./js/all.min.js"></script>
-  <script src="./js/bootstrap.bundle.min.js"></script>
-</body>
-
-</html>
+  <?php
+include_once("./frontend_layouts/footer.php");
+?>

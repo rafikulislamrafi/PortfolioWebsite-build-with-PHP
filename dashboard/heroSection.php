@@ -1,15 +1,20 @@
 <?php
+include_once("../database/env.php");
 include_once("./backend_layouts/header.php");
 include_once("./backend_layouts/heroheader.php");
 $errors = isset($_SESSION['errors']) ? $_SESSION['errors'] : [];
-// Clear the errors after getting them
-unset($_SESSION['errors']);
-?>
 
+$query = "SELECT * FROM banner LIMIT 1"; 
+// Connect to the database
+$result = mysqli_query($conn, $query);
+$currentBanner = mysqli_fetch_assoc($result);
+?>
 <!-- Form Section -->
 <div class="form-section">
   <form action="../controller/UpdateBanner.php" enctype="multipart/form-data" method="post" id="portfolioForm">
-    <div class="dashboard-header">
+    <input type="text" name="id" value="<?= $currentBanner['id'] ?>" hidden>
+    <input type="hidden" value="<?= $currentBanner['featured_img'] ?? null ?>" name="oldImage">
+  <div class="dashboard-header">
       <div class="header-content">
         <div class="header-left">
           <div class="header-icon">
@@ -36,10 +41,11 @@ unset($_SESSION['errors']);
       </label>
       <div class="input-icon">
         <i class="fas fa-heading"></i>
-        <input name="heading" type="text" class="form-control" id="heading" placeholder="Enter your main heading">
+        <input value="<?=$currentBanner['heading'] ?? null?>" name="heading" type="text" class="form-control"
+          id="heading" placeholder="Enter your main heading">
       </div>
       <?php if(isset($errors['heading'])): ?>
-        <span class="text-danger"><?php echo $errors['heading']; ?></span>
+      <span class="text-danger"><?php echo $errors['heading']; ?></span>
       <?php endif; ?>
     </div>
 
@@ -51,10 +57,11 @@ unset($_SESSION['errors']);
       </label>
       <div class="input-icon">
         <i class="fas fa-text-height"></i>
-        <input name="sub_heading" type="text" class="form-control" id="subheading" placeholder="Enter your sub heading">
+        <input value="<?=$currentBanner['sub_heading'] ?? null?>" name="sub_heading" type="text" class="form-control"
+          id="subheading" placeholder="Enter your sub heading">
       </div>
       <?php if(isset($errors['sub_heading'])): ?>
-        <span class="text-danger"><?php echo $errors['sub_heading']; ?></span>
+      <span class="text-danger"><?php echo $errors['sub_heading']; ?></span>
       <?php endif; ?>
     </div>
 
@@ -64,9 +71,10 @@ unset($_SESSION['errors']);
         <i class="fas fa-align-left"></i>
         Description
       </label>
-      <textarea name="details" class="form-control textarea-field" id="details" placeholder="Describe your portfolio in detail..."></textarea>
+      <textarea name="details" class="form-control textarea-field" id="details"
+        placeholder="Describe your portfolio in detail..."><?=$currentBanner['details'] ?? null?></textarea>
       <?php if(isset($errors['details'])): ?>
-        <span class="text-danger"><?php echo $errors['details']; ?></span>
+      <span class="text-danger"><?php echo $errors['details']; ?></span>
       <?php endif; ?>
     </div>
 
@@ -79,10 +87,11 @@ unset($_SESSION['errors']);
         </label>
         <div class="input-icon">
           <i class="fas fa-mouse-pointer"></i>
-          <input name="cta_one" type="text" class="form-control" id="cta-one" placeholder="Example: Lets Talk">
+          <input value="<?=$currentBanner['cta_one'] ?? null?>" name="cta_one" type="text" class="form-control"
+            id="cta-one" placeholder="Example: Lets Talk">
         </div>
         <?php if(isset($errors['cta_one'])): ?>
-          <span class="text-danger"><?php echo $errors['cta_one']; ?></span>
+        <span class="text-danger"><?php echo $errors['cta_one']; ?></span>
         <?php endif; ?>
       </div>
 
@@ -93,10 +102,11 @@ unset($_SESSION['errors']);
         </label>
         <div class="input-icon">
           <i class="fas fa-link"></i>
-          <input name="cta_one_link" type="url" class="form-control" id="cta-one-link" placeholder="https://example.com">
+          <input value="<?=$currentBanner['cta_one_link'] ?? null?>" name="cta_one_link" type="url" class="form-control"
+            id="cta-one-link" placeholder="https://example.com">
         </div>
         <?php if(isset($errors['cta_one_link'])): ?>
-          <span class="text-danger"><?php echo $errors['cta_one_link']; ?></span>
+        <span class="text-danger"><?php echo $errors['cta_one_link']; ?></span>
         <?php endif; ?>
       </div>
     </div>
@@ -109,10 +119,11 @@ unset($_SESSION['errors']);
         </label>
         <div class="input-icon">
           <i class="fas fa-hand-pointer"></i>
-          <input name="cta_two" type="text" class="form-control" id="cta-two" placeholder="Example: Download CV">
+          <input value="<?=$currentBanner['cta_two'] ?? null?>" name="cta_two" type="text" class="form-control"
+            id="cta-two" placeholder="Example: Download CV">
         </div>
         <?php if(isset($errors['cta_two'])): ?>
-          <span class="text-danger"><?php echo $errors['cta_two']; ?></span>
+        <span class="text-danger"><?php echo $errors['cta_two']; ?></span>
         <?php endif; ?>
       </div>
 
@@ -123,10 +134,11 @@ unset($_SESSION['errors']);
         </label>
         <div class="input-icon">
           <i class="fas fa-external-link-alt"></i>
-          <input name="cta_two_link" type="url" class="form-control" id="cta-two-link" placeholder="https://example.com">
+          <input value="<?=$currentBanner['cta_two_link'] ?? null?>" name="cta_two_link" type="url" class="form-control"
+            id="cta-two-link" placeholder="https://example.com">
         </div>
         <?php if(isset($errors['cta_two_link'])): ?>
-          <span class="text-danger"><?php echo $errors['cta_two_link']; ?></span>
+        <span class="text-danger"><?php echo $errors['cta_two_link']; ?></span>
         <?php endif; ?>
       </div>
     </div>
@@ -138,7 +150,7 @@ unset($_SESSION['errors']);
         Featured Image
       </label>
       <div class="file-upload-container">
-        <input name="feature_img" type="file" id="featured-image">
+        <input name="featured_img" type="file" id="featured-image">
         <div class="file-upload-content">
           <div class="file-upload-icon">
             <i class="fas fa-cloud-upload-alt"></i>
@@ -147,9 +159,27 @@ unset($_SESSION['errors']);
           <div class="file-upload-subtext">Only JPG and PNG files are allowed</div>
         </div>
       </div>
-      <?php if(isset($errors['feature_img'])): ?>
-        <span class="text-danger"><?php echo $errors['feature_img']; ?></span>
+      <?php if(isset($errors['featured_img'])): ?>
+      <span class="text-danger"><?php echo $errors['featured_img']; ?></span>
       <?php endif; ?>
+    </div>
+    <label class="form-label">
+      <i class="fas fa-image"></i>
+      Preview Image
+    </label>
+    <div class="justify-content-center file-pload-container">
+      <?php
+   if(isset($currentBanner['featured_img'])){
+    ?>
+      <img src="../<?= $currentBanner['featured_img'] ?>" alt="Featured Image" class="img-fluid img-preview"
+        style="max-width: 100%; height: auto; border-radius: 8px;">
+      <?php
+   }
+    ?>
+
+
+
+
     </div>
   </form>
 </div>
@@ -158,18 +188,15 @@ unset($_SESSION['errors']);
 include_once("./backend_layouts/herofooter.php");
 include_once("./backend_layouts/footer.php");
 if(isset($_SESSION['success'])){
-
-
 ?>
-
 <script>
-  Toast.fire({
+Toast.fire({
   icon: "success",
   title: `<?= $_SESSION['success']; ?>`
 });
 </script>
-
 <?php
 }
 unset($_SESSION['success']);
+unset($_SESSION['errors']);
 ?>
