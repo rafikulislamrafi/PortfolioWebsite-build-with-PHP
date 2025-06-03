@@ -1,42 +1,70 @@
 </div>
-            <!-- / Content -->
+<!-- / Content -->
 
-            <div class="content-backdrop fade"></div>
-          </div>
-          <!-- Content wrapper -->
-        </div>
-        <!-- / Layout page -->
-      </div>
+<div class="content-backdrop fade"></div>
+</div>
+<!-- Content wrapper -->
+</div>
+<!-- / Layout page -->
+</div>
 
-      <!-- Overlay -->
-      <div class="layout-overlay layout-menu-toggle"></div>
-    </div>
-    <!-- / Layout wrapper -->
+<!-- Overlay -->
+<div class="layout-overlay layout-menu-toggle"></div>
+</div>
+<!-- / Layout wrapper -->
 
-    <!-- Core JS -->
+<!-- Core JS -->
 
-    <script src="./assets/vendor/libs/jquery/jquery.js"></script>
+<script src="./assets/vendor/libs/jquery/jquery.js"></script>
 
-    <script src="./assets/vendor/libs/popper/popper.js"></script>
-    <script src="./assets/vendor/js/bootstrap.js"></script>
+<script src="./assets/vendor/libs/popper/popper.js"></script>
+<script src="./assets/vendor/js/bootstrap.js"></script>
 
-    <script src="./assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
+<script src="./assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
 
-    <script src="./assets/vendor/js/menu.js"></script>
+<script src="./assets/vendor/js/menu.js"></script>
 
-    <!-- endbuild -->
+<!-- endbuild -->
 
-    <!-- Vendors JS -->
-    <script src="./assets/vendor/libs/apex-charts/apexcharts.js"></script>
+<!-- Vendors JS -->
+<script src="./assets/vendor/libs/apex-charts/apexcharts.js"></script>
 
-    <!-- Main JS -->
+<!-- Main JS -->
 
-    <script src="./assets/js/main.js"></script>
+<script src="./assets/js/main.js"></script>
 
-    <!-- Page JS -->
-    <script src="./assets/js/dashboards-analytics.js"></script>
+<!-- Page JS -->
+<script src="./assets/js/dashboards-analytics.js"></script>
 
-    <!-- Place this tag before closing body tag for github widget button. -->
-    <script async defer src="https://buttons.github.io/buttons.js"></script>
-  </body>
+<!-- Place this tag before closing body tag for github widget button. -->
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+const Toast = Swal.mixin({
+  toast: true,
+  position: "top-end",
+  showConfirmButton: false,
+  timer: 3000,
+  timerProgressBar: true,
+  didOpen: (toast) => {
+    toast.onmouseenter = Swal.stopTimer;
+    toast.onmouseleave = Swal.resumeTimer;
+  }
+});
+</script>
+
+<?php
+if(isset($_SESSION['msg'])){
+?>
+<script>
+  Toast.fire({
+  icon: `<?= $_SESSION['msg']['icon'] ?? 'Success' ?>`, 
+  title: `<?= $_SESSION['msg']['title'] ?>`,
+});
+<?php
+} 
+?>
+</script>
+</body>
+
 </html>

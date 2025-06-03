@@ -12,7 +12,7 @@
       </a>
     </li>
   </ul>
-</li> 
+</li>
 
 <!--======= LOGIN ==========-->
 <li class="menu-item">
@@ -40,10 +40,36 @@
 </li>
 <!-- Section -->
 <li class="menu-header small text-uppercase"><span class="menu-header-text">Section</span></li>
+<!-- === Hero Section  -->
 <li class="menu-item">
-  <a href="./heroSection.php"
-    class="menu-link">
+  <a href="./heroSection.php" class="menu-link">
     <i class="menu-icon bx bxs-message-square-edit"></i>
     <div class="text-truncate" data-i18n="Documentation">Hero Section</div>
   </a>
+</li>
+<!-- === Social Link Section  -->
+<li class="menu-item">
+  <a href="./SocialLink.php" class="menu-link">
+    <i class='menu-icon bx bx-link'></i>
+    <div class="text-truncate" data-i18n="Documentation">Social Links</div>
+  </a>
+</li>
+<!-- === Experiences Section  -->
+<li class="menu-item ">
+  <a href="javascript:void(0);" class="menu-link menu-toggle">
+    <i class='menu-icon bx bx-briefcase-alt-2'></i>
+    <div class="text-truncate" data-i18n="Dashboards">Experiences</div>
+  </a>
+  <ul class="menu-sub">
+    <li class="menu-item active">
+      <a href="./Experiences.php" class="menu-link">
+        <div class="text-truncate" data-i18n="Analytics">Add Job Experiences</div>
+      </a>
+    </li>
+    <li class="menu-item">
+      <a href="index.php" class="menu-link">
+        <div class="text-truncate" data-i18n="Analytics">All Job Experiences</div>
+      </a>
+    </li>
+  </ul>
 </li>

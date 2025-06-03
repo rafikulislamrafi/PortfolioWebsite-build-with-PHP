@@ -12,7 +12,7 @@ $currentBanner = mysqli_fetch_assoc($result);
 <!-- Form Section -->
 <div class="form-section">
   <form action="../controller/UpdateBanner.php" enctype="multipart/form-data" method="post" id="portfolioForm">
-    <input type="text" name="id" value="<?= $currentBanner['id'] ?>" hidden>
+    <input type="hidden" name="id" value="<?= $currentBanner['id'] ?? null ?>" >
     <input type="hidden" value="<?= $currentBanner['featured_img'] ?? null ?>" name="oldImage">
   <div class="dashboard-header">
       <div class="header-content">

@@ -33,7 +33,7 @@
 
   body {
     font-family: 'Inter', sans-serif;
-    background: linear-gradient(135deg, #F8FAFC 0%, #E2E8F0 100%);
+    background: linear-gradient(135deg, #e3f2fd 0%, #ffffff 50%, #f3e5f5 100%);
     color: var(--text-dark);
     line-height: 1.6;
     min-height: 100vh;
