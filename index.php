@@ -10,7 +10,30 @@ $currentBanner = mysqli_fetch_assoc($result);
 $query = "SELECT * FROM social_links";
 $res = mysqli_query($conn, $query); 
 $links = mysqli_fetch_assoc($res);
+
+// ! Example values (normally from a form or database)
+$facebook_url = $links['fb_url'];
+$insta_url = $links['insta_url'];
+$github_url = $links['github_url'];
+$whatsapp_url = $links['whatsapp_url'];
+$tiktok_url = $links['tiktok_url'];
+$telegram_url = $links['telegram_url'];
+$twitter_url = $links['twitter_url'];
+$linkedin_url = $links['linkedin_url'];
+
+// Array of platform => [value, icon class]
+$links = [
+  'fb_url' => [$facebook_url, 'fa-facebook-f'],
+  'insta_url' => [$insta_url, 'fa-instagram'],
+  'github_url' => [$github_url, 'fa-github'],
+  'whatsapp_url' => [$whatsapp_url, 'fa-whatsapp'],
+  'tiktok_url' => [$tiktok_url, 'fa-tiktok'],
+  'telegram_url' => [$telegram_url, 'fa-telegram'],
+  'twitter_url' => [$twitter_url, 'fa-twitter'],
+  'linkedin_url' => [$linkedin_url, 'fa-linkedin-in']
+];
 ?>
+
 <!-- ====== Hero Section Start ====== -->
 <section id="hero-section">
   <div class="container">
@@ -26,43 +49,21 @@ $links = mysqli_fetch_assoc($res);
         <div class="d-none d-lg-block social-media">
           <span>Follow me :</span>
           <?php
-            foreach($links as $link) {
-              // if ($link) {
-              //   $iconClass = '';
-              //   switch ($key) {
-              //     case 'fb_url':
-              //       $iconClass = 'fa-facebook';
-              //       break;
-              //     case 'insta_url':
-              //       $iconClass = 'fa-instagram';
-              //       break;
-              //     case 'github_url':
-              //       $iconClass = 'fa-github';
-              //       break;
-              //     case 'twitter_url':
-              //       $iconClass = 'fa-twitter';
-              //       break;
-              //     case 'tiktok_url':
-              //       $iconClass = 'fa-tiktok';
-              //       break;
-              //     case 'telegram_url':
-              //       $iconClass = 'fa-telegram';
-              //       break;
-              //     case 'linkedin_url':
-              //       $iconClass = 'fa-linkedin';
-              //       break;
-              //   }
-              //   echo "<a href='$link'><span><i class='fa-brands $iconClass'></i></span></a>";
-              // }
-              ?>
-
-          <?php
-            }
-            ?>
+          // HTML Output
+          foreach ($links as $platform => [$url, $icon_class]) {
+          if (!empty($url)) {
+          echo '<a href="' . htmlspecialchars($url) . '" target="_blank">
+            <span><i class="fa-brands ' . $icon_class . '"></i></span>
+          </a>';
+          }
+          }
+          ?>
+          <!--
           <a href="<?= $links['fb_url'] ?? null ?>"><span><i class="fa-brands fa-facebook-f"></i></span></a>
           <a href="<?= $links['twitter_url'] ?? null ?>"><span><i class="fa-brands fa-twitter"></i></span></a>
           <a href="<?= $links['insta_url'] ?? null ?>"><span><i class="fa-brands fa-instagram"></i></span></a>
           <a href="<?= $links['github_url'] ?? null ?>"><span><i class="fa-brands fa-github"></i></span></a>
+          -->
         </div>
       </div>
       <div class="hero-img col-md-6">

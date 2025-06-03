@@ -29,4 +29,4 @@ if($res){
       'title' => 'Social Links Updated Successfully'
     ];
   }
-} 
+}
