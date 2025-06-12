@@ -54,6 +54,13 @@
     <div class="text-truncate" data-i18n="Documentation">Social Links</div>
   </a>
 </li>
+ <!-- ===== About Section ======== -->
+<li class="menu-item">
+  <a href="./aboutSection.php" class="menu-link">
+    <i class='menu-icon bx bx-user'></i>
+    <div class="text-truncate" data-i18n="Documentation">About Section</div>
+  </a>
+</li>
 <!-- === Experiences Section  -->
 <li class="menu-item ">
   <a href="javascript:void(0);" class="menu-link menu-toggle">

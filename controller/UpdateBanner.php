@@ -81,6 +81,8 @@ if (count($errors) > 0){
   exit;
 } else {
   
+    // If no errors, proceed with the update or insert operation
+    // Create the directory if it doesn't exist
     $path = '../uploads/banners';
     if (!file_exists($path)) {
         mkdir($path);

@@ -7,11 +7,19 @@ $query = "SELECT * FROM banner LIMIT 1";
 $result = mysqli_query($conn, $query);
 $currentBanner = mysqli_fetch_assoc($result);
 // * Social Links
-$query = "SELECT * FROM social_links";
+$query = "SELECT * FROM social_links"; 
 $res = mysqli_query($conn, $query); 
 $links = mysqli_fetch_assoc($res);
-
-// ! Example values (normally from a form or database)
+// * About Us Data
+$query = "SELECT * FROM about LIMIT 1";
+$res = mysqli_query($conn, $query);
+$currentAbout = mysqli_fetch_assoc($res);
+// * Experience Data
+$query = "SELECT * FROM experiences WHERE status = 1 ORDER BY id DESC";
+$res = mysqli_query($conn, $query);
+$experiences = mysqli_fetch_all($res, 1);
+// print_r($experiences); // Debugging line to check fetched experiences
+// ! Example values (normally from a form or database) 
 $facebook_url = $links['fb_url'];
 $insta_url = $links['insta_url'];
 $github_url = $links['github_url'];
@@ -86,19 +94,17 @@ $links = [
   <div class="container">
     <div class="row align-items-center">
       <div class="about-img col-lg-6 d-none d-lg-block">
-        <img class="img-fluid" src="./img/Group 211.png" alt="About Me Image">
+        <img class="img-fluid" src="<?=$currentAbout['about_img'] ?? './img/Group 211.png' ?>" alt="About Me Image">
       </div>
       <div class="about-cnt col-md-6">
-        <h2>About Me</h2>
+        <h2><?=$currentAbout['about_heading'] ?? 'About Me' ?></h2>
         <p>
-          With 10 yevvars experience as a professional Web developer, I have acquired the skills and knowledge
-          necessary to make
-          your project a success. I enjoy every step of the design process, from discussion and collaboration.
+          <?=$currentAbout['about_description'] ?? 'No description available.' ?>.
         </p>
-        <a class="btn btn-common" href="#">Learn More</a>
+        <a class="btn btn-common" href="<?= $currentAbout['cta_link'] ?? '#' ?>"><?=$currentAbout['cta'] ?? 'Learn More' ?></a>
       </div>
       <div class="about-img col-md-6 d-block d-lg-none">
-        <img class="img-fluid" src="./img/Group 211.png" alt="About Me Image">
+        <img class="img-fluid" src="<?=$currentAbout['about_img'] ?? './img/Group 211.png' ?>" alt="About Me Image">
       </div>
     </div>
   </div>
@@ -225,55 +231,38 @@ $links = [
 </section>
 <!-- ====== My-Work Section End ====== -->
 <!-- ====== Experience Section Start ====== -->
+<?php
+ if(count($experiences) > 0) {
+?>
 <section id="experience">
   <div class="container">
     <div class="experience-header col-md-12">
       <h2 class="text-center">My Work Experience</h2>
     </div>
-    <div class="timeLine green">
+    <?php
+    foreach($experiences as $experience) {
+    ?>
+    <div class="timeLine <?= $experience['color']?>">
       <div class="row justify-content-between">
         <div class="col-md-3 company-details">
-          <h4>Global Solution</h4>
-          <p>Sep 2019 - Aug 2020</p>
+          <h4><?= $experience['company']?></h4>
+          <p><?= $experience['duration_from']?> -
+            <?= empty($experience['duration_to']) ? 'Running' : $experience['duration_to'] ?></p>
         </div>
         <div class="col-md-8 exparience-details">
-          <h4>Sr. Product Designer</h4>
-          <p>A Visual designe design for a varaity of platforms which may includes internat and internet sites, games,
-            movies and
-            wareable. In short, they create the concept.</p>
+          <h4><?= $experience['position']?></h4>
+          <p><?= $experience['position_details']?>.</p>
         </div>
       </div>
     </div>
-    <div class="timeLine red">
-      <div class="row justify-content-between">
-        <div class="col-md-3 company-details">
-          <h4>Global Solution</h4>
-          <p>Sep 2019 - Aug 2020</p>
-        </div>
-        <div class="col-md-8 exparience-details">
-          <h4>Sr. Product Designer</h4>
-          <p>A Visual designe design for a varaity of platforms which may includes internat and internet sites, games,
-            movies and
-            wareable. In short, they create the concept.</p>
-        </div>
-      </div>
-    </div>
-    <div class="timeLine yellow">
-      <div class="row justify-content-between">
-        <div class="col-md-3 company-details">
-          <h4>Global Solution</h4>
-          <p>Sep 2019 - Aug 2020</p>
-        </div>
-        <div class="col-md-8 exparience-details">
-          <h4>Sr. Product Designer</h4>
-          <p>A Visual designe design for a varaity of platforms which may includes internat and internet sites, games,
-            movies and
-            wareable. In short, they create the concept.</p>
-        </div>
-      </div>
-    </div>
+    <?php
+   }
+   ?>
   </div>
 </section>
+<?php
+}
+?>
 <!-- ====== Experience Section End ====== -->
 <!-- ====== My Expert Areas Start ====== -->
 <section id="expert-areas">

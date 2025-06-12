@@ -4,7 +4,7 @@ include_once("./backend_layouts/htmlCss/ExperiencesHeader.php");
 ?>
 
 
-<form id="jobExperienceForm">
+<form id="jobExperienceForm" mathod="POST" action="../controller/ExperienceController.php">
   <div class="experience-card px-3">
     <div class="d-flex justify-content-between align-items-center mb-3">
       <span class="badge badge-experience px-3 py-2">Experience</span>
@@ -40,7 +40,7 @@ include_once("./backend_layouts/htmlCss/ExperiencesHeader.php");
         <label class="form-label fw-semibold">
           Working Status <span class="required">*</span>
         </label>
-        <select class="form-select" name="workingStatus" onchange="toggleWorkingTo(this.value)" >
+        <select class="form-select"  onchange="toggleWorkingTo(this.value)" >
           <option value="">Select working status</option>
           <option value="Past">Past</option>
           <option value="Running">Running</option>

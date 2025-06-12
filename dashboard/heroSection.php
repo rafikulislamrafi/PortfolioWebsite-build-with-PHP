@@ -176,10 +176,6 @@ $currentBanner = mysqli_fetch_assoc($result);
       <?php
    }
     ?>
-
-
-
-
     </div>
   </form>
 </div>
