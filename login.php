@@ -67,11 +67,11 @@ if(isset($_SESSION["auth"])){
                       </svg>
                     </span>
                   </span>
-                  <span class="app-brand-text demo text-heading fw-bold">Sneat</span>
+                  <span class="app-brand-text demo text-heading fw-bold">Rafikul</span>
                 </a>
               </div>
               <!-- /Logo -->
-              <h4 class="mb-1">Welcome to Sneat! 👋</h4>
+              <h4 class="mb-1">Welcome to Rafikul! 👋</h4>
               <p class="mb-6">Please sign-in to your account and start the adventure</p>
 
               <form id="formAuthentication" class="mb-6" method="post" action="./controller/LoginUser.php">

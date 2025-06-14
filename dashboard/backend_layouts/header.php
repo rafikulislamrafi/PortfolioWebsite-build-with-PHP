@@ -131,7 +131,7 @@ if (!isset($_SESSION["auth"])){
                 </svg>
               </span>
             </span>
-            <span class="app-brand-text demo menu-text fw-bold ms-2">Ashikur</span>
+            <span class="app-brand-text demo menu-text fw-bold ms-2">Rafikul</span>
           </a>
 
           <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto">
@@ -187,7 +187,7 @@ if (!isset($_SESSION["auth"])){
 
               <!-- User -->
               <li class="nav-item navbar-dropdown dropdown-user dropdown">
-                <a class="nav-link dropdown-toggle hide-arrow p-0" href="" data-bs-toggle="dropdown">
+                <a class="nav-link dropdown-toggle hide-arrow p-0" href="#" data-bs-toggle="dropdown">
                   <div class="avatar avatar-online">
                     <img src="https://api.dicebear.com/9.x/initials/svg?seed=<?=$_SESSION['auth']['username']?>" alt
                       class="w-px-40 h-auto rounded-circle" />

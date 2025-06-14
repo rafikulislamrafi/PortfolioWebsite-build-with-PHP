@@ -32,10 +32,16 @@
           </div>
           <div class="footerIcon col-md-5 text-end">
             <p>Follow Me:</p>
-            <a href="<?= $links['fb_url'] ?? null ?>"><span><i class="fa-brands fa-facebook-f"></i></span></a>
-          <a href="<?= $links['twitter_url'] ?? null ?>"><span><i class="fa-brands fa-twitter"></i></span></a>
-          <a href="<?= $links['insta_url'] ?? null ?>"><span><i class="fa-brands fa-instagram"></i></span></a>
-          <a href="<?= $links['github_url'] ?? null ?>"><span><i class="fa-brands fa-github"></i></span></a>
+            <?php
+          // HTML Output
+          foreach ($links as $platform => [$url, $icon_class]) {
+          if (!empty($url)) {
+          echo '<a href="' . htmlspecialchars($url) . '" target="_blank">
+            <span><i class="fa-brands ' . $icon_class . '"></i></span>
+          </a>';
+          }
+          }
+          ?>
           </div>
         </div>
       </div>

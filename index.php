@@ -14,6 +14,10 @@ $links = mysqli_fetch_assoc($res);
 $query = "SELECT * FROM about LIMIT 1";
 $res = mysqli_query($conn, $query);
 $currentAbout = mysqli_fetch_assoc($res);
+// * Branding Data
+$query = "SELECT * FROM branding LIMIT 1";
+$res = mysqli_query($conn, $query);
+$currentBranding = mysqli_fetch_assoc($res);
 // * Experience Data
 $query = "SELECT * FROM experiences WHERE status = 1 ORDER BY id DESC";
 $res = mysqli_query($conn, $query);
@@ -66,12 +70,6 @@ $links = [
           }
           }
           ?>
-          <!--
-          <a href="<?= $links['fb_url'] ?? null ?>"><span><i class="fa-brands fa-facebook-f"></i></span></a>
-          <a href="<?= $links['twitter_url'] ?? null ?>"><span><i class="fa-brands fa-twitter"></i></span></a>
-          <a href="<?= $links['insta_url'] ?? null ?>"><span><i class="fa-brands fa-instagram"></i></span></a>
-          <a href="<?= $links['github_url'] ?? null ?>"><span><i class="fa-brands fa-github"></i></span></a>
-          -->
         </div>
       </div>
       <div class="hero-img col-md-6">
@@ -79,10 +77,16 @@ $links = [
       </div>
       <div class="d-lg-none social-media">
         <span>Follow me :</span>
-        <a href="<?= $links['fb_url'] ?? null ?>"><span><i class="fa-brands fa-facebook-f"></i></span></a>
-        <a href="<?= $links['twitter_url'] ?? null ?>"><span><i class="fa-brands fa-twitter"></i></span></a>
-        <a href="<?= $links['insta_url'] ?? null ?>"><span><i class="fa-brands fa-instagram"></i></span></a>
-        <a href="<?= $links['github_url'] ?? null ?>"><span><i class="fa-brands fa-github"></i></span></a>
+        <?php
+          // HTML Output
+          foreach ($links as $platform => [$url, $icon_class]) {
+          if (!empty($url)) {
+          echo '<a href="' . htmlspecialchars($url) . '" target="_blank">
+            <span><i class="fa-brands ' . $icon_class . '"></i></span>
+          </a>';
+          }
+          }
+          ?>
       </div>
     </div>
   </div>
@@ -147,19 +151,17 @@ $links = [
   <div class="container">
     <div class="row align-items-center">
       <div class="blog-img col-md-6 d-none d-lg-block">
-        <img class="img-fluid" src="./img/206.png" alt="">
+        <img class="img-fluid" src="<?=$currentBranding['branding_img'] ?>" alt="">
       </div>
       <div class="blog-cnt col-md-6">
-        <h2>Branding</h2>
+        <h2><?=$currentBranding['branding_heading'] ?? 'About Me' ?></h2>
         <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Amet ornare id faucibus nunc fusce tellus
-          scelerisque
-          adipiscing lorem. Mollis tortor, mattis urna imperdiet.
+        <?=$currentBranding['branding_description'] ?? 'No description available.' ?>.
         </p>
-        <a class="btn btn-common" href="#">See Project</a>
+        <a class="btn btn-common" href="<?= $currentBranding['cta_link'] ?? '#' ?>"><?=$currentBranding['cta'] ?? 'Learn More' ?></a>
       </div>
       <div class="blog-img col-md-6 d-block d-lg-none">
-        <img class="img-fluid" src="./img/206.png" alt="">
+        <img class="img-fluid" src="<?=$currentBranding['branding_img'] ?>" alt="">
       </div>
     </div>
   </div>

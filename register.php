@@ -63,7 +63,7 @@ if (!isset($_SESSION['auth'])){
                   </svg>
                 </span>
               </span>
-              <span class="app-brand-text demo text-heading fw-bold">Sneat</span>
+              <span class="app-brand-text demo text-heading fw-bold">Rafikul</span>
             </a>
           </div>
           <!-- /Logo -->

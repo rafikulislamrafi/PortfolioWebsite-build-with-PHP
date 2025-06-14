@@ -61,6 +61,13 @@
     <div class="text-truncate" data-i18n="Documentation">About Section</div>
   </a>
 </li>
+ <!-- ===== Branding Section ======== -->
+<li class="menu-item">
+  <a href="./BrandingSection.php" class="menu-link">
+    <i class='menu-icon bx bx-palette'></i>
+    <div class="text-truncate" data-i18n="Documentation">Branding Section</div>
+  </a>
+</li>
 <!-- === Experiences Section  -->
 <li class="menu-item ">
   <a href="javascript:void(0);" class="menu-link menu-toggle">
